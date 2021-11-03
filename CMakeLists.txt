@@ -1,8 +1,16 @@
 PROJECT(Ticket-Manager)
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.2)
 
-ADD_SUBDIRECTORY(inc)
+SET(Inc 
+Flight.h
+IOrder.h
+)
 
-ADD_SUBDIRECTORY(src)
 
+SET(Src
+main.cpp
+)
+
+SOURCE_GROUP("inc" FILES ${Inc})
+SOURCE_GROUP("src" FILES ${Src})
