@@ -1,16 +1,18 @@
 PROJECT(Ticket-Manager)
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.2)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
-SET(Inc 
-Flight.h
-IOrder.h
+AUX_SOURCE_DIRECTORY(inc DIR_INCS)
+AUX_SOURCE_DIRECTORY(src DIR_SRCS)
+
+file(
+    GLOB
+    AllFile
+    "inc/*.h"
+    "src/*.cpp"
 )
 
+ADD_EXECUTABLE(main ${AllFile})
 
-SET(Src
-main.cpp
-)
-
-SOURCE_GROUP("inc" FILES ${Inc})
-SOURCE_GROUP("src" FILES ${Src})
+SOURCE_GROUP("include" FILES ${DIR_INCS})
+SOURCE_GROUP("source" FILES ${DIR_SRCS})
