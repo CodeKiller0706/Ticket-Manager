@@ -16,5 +16,8 @@ public:
 
 class IOrderList
 {
-
+public:
+	virtual int create(char name[], CTime& t, Flight* pFlight, int m) = 0; // 建立订单
+	virtual IOrder* getOrder(int n) = 0; // 给定编号，查询订单
+	virtual int remove(int n) = 0; // 给定编号， 撤销订单
 };
