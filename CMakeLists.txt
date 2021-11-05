@@ -2,7 +2,15 @@ PROJECT(Ticket-Manager)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
-AUX_SOURCE_DIRECTORY(inc DIR_INCS)
+INCLUDE_DIRECTORIES(inc)
+
+SET(
+DIR_INCS
+"inc/Company.h"
+"inc/Flight.h"
+"inc/IOrder.h"
+)
+
 AUX_SOURCE_DIRECTORY(src DIR_SRCS)
 
 file(
