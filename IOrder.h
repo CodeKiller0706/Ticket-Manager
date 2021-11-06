@@ -1,23 +1,46 @@
 #pragma once
 
 #include <atltime.h>
+#include<vector>
+#include<map>
 #include "Flight.h"
 
 class IOrder
 {
 public:
-	virtual int getNo(); // 获取订单编号
-	virtual char* getName(); // 获取预定人姓名
-	virtual CTime& getTime(); // 出发日期
-	virtual Flight& getFlight(); // 预定航班
-	virtual int getNum(); //座位数量
-	virtual int getPrice(); // 获得总价
+    IOrder(char* ownerName, const CTime& departDay, Flight* flight);
+    int getNo(); // 获取订单编号
+    char* getName(); // 获取预定人姓名
+    CTime& getDepartDay(); // 出发日期
+    Flight* getFlight(); // 预定航班
+
+private:
+    char* m_OwnerName;
+    Flight* m_Flight;
+    int m_OrderNum;
+    CTime m_DepartDay;
 };
 
-class IOrderList
+class IOrderManager
 {
 public:
-	virtual int create(char name[], CTime& t, Flight* pFlight, int m) = 0; // 建立订单
-	virtual IOrder* getOrder(int n) = 0; // 给定编号，查询订单
-	virtual int remove(int n) = 0; // 给定编号， 撤销订单
+    static IOrderManager* getInstance()
+    {
+        if (m_instance == nullptr)
+            m_instance = new IOrderManager;
+        return m_instance;
+    }
+
+    int create(char* ownerName, const CTime& t, Flight* pFlight); // 建立订单, 返回订单编号
+    // search order
+    IOrder* getOrder(int n); // 给定编号，查询订单
+    std::vector<IOrder*>& getOrder(char* ownerName);
+
+    void remove(int n); // 给定编号， 撤销订单
+
+private:
+    IOrderManager() = default;
+    ~IOrderManager() = default;
+    static IOrderManager* m_instance;
+    std::map<int, IOrder*> m_Map;
 };

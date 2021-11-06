@@ -5,18 +5,21 @@
 class Flight
 {
 public:
-	Flight(char n[], char f[], char t[], CTime& d, CTime& a, int m);
-	char* getNo(); // 航班编号
-	void getFromTo(char f[], char t[]); // 出发地 目的地
-	int getNum(); // 座位总数
-	void setPrice(); // 价格
+    Flight(char* flightNum, char* from, char* to, CTime& takeOff, CTime& arrive, int seats);
+    ~Flight();
+    char* getNo(); // 航班编号
+    void getFromTo(char*& from, char*& to); // 出发地 目的地
+    int getSeats(); // 座位总数
+    void setPrice(int price); // 价格
+    int getPrice();
+    void getFromToTime(CTime& departTime, CTime& arriveTime);
 
 private:
-	char _no[16]; //航班编号
-	char _f[32];
-	char _t[32];
-	CTime _depart;
-	CTime _arrival;
-	int _totalNum;
-	int _price;
+    char* m_FlightNum; //航班编号
+    char* m_From;
+    char* m_To;
+    CTime m_Depart;
+    CTime m_Arrival;
+    int m_Seats;
+    int m_Price;
 };
